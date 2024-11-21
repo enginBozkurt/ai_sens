@@ -1,6 +1,5 @@
-Flask==2.2.2
-python-dotenv==1.0.0
-openai==0.27.4
-Werkzeug==2.1.0
-streamlit==1.40.1
-# Include other dependencies as needed
+pip install Flask==2.2.2
+pip install Werkzeug==2.2.2
+pip install streamlit==1.40.1
+pip install python-dotenv==1.0.0
+pip install openai==0.27.4
