@@ -14,14 +14,14 @@ app = Flask(__name__)
 
 # Get OpenAI API key from environment variables
 # openai_api_key = os.getenv("OPENAI_API_KEY")
-openai = st.secrets["OPENAI_API_KEY"]
+openai_api_key = st.secrets["OPENAI_API_KEY"]
 
 
 # Check if the API key is present
 if not openai_api_key:
     raise ValueError("OpenAI API key is missing. Please set the OPENAI_API_KEY environment variable.")
 
-openai.api_key = openai_api_key
+openai_api_key = openai_api_key
 
 # Serve static files (HTML, CSS, JS)
 @app.route('/')
