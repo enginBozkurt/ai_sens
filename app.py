@@ -2,6 +2,8 @@ import os
 from flask import Flask, request, jsonify, send_from_directory
 import openai
 from dotenv import load_dotenv
+import streamlit as st
+
 
 # Load environment variables from .env
 load_dotenv()
@@ -11,7 +13,9 @@ app = Flask(__name__)
 
 
 # Get OpenAI API key from environment variables
-openai_api_key = os.getenv("OPENAI_API_KEY")
+# openai_api_key = os.getenv("OPENAI_API_KEY")
+openai = st.secrets["OPENAI_API_KEY"]
+
 
 # Check if the API key is present
 if not openai_api_key:
