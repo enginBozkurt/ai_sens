@@ -11,7 +11,7 @@ app = Flask(__name__)
 
 
 # Get OpenAI API key from environment variables
-openai_api_key = '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'
+openai_api_key = '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'
 
 # Check if the API key is present
 if not openai_api_key:
