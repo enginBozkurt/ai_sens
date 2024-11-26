@@ -1,15 +1,21 @@
 import os
-from flask import Flask, request, jsonify, send_from_directory
+from flask import Flask, request, jsonify, send_from_directory, session
+from flask_session import Session
 import openai
 from dotenv import load_dotenv
 import streamlit as st
 
+import uuid
 
 # Load environment variables from .env
 load_dotenv()
 
 # Initialize Flask app
 app = Flask(__name__)
+
+app.config["SESSION_TYPE"] = "filesystem"
+app.config["SECRET_KEY"] = os.getenv("SECRET_KEY", str(uuid.uuid4()))
+Session(app)
 
 
 # Get OpenAI API key from environment variables
