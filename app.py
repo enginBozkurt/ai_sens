@@ -53,6 +53,38 @@ def chat():
         # Make sure to print the user message for debugging
         print(f"User message received: {user_message}")
 
+        if not session['user_profile'].get('name'):
+            if "My name is" in user_message:
+                # Extract the name and store it in the session
+                name = user_message.split("My name is")[-1].strip()
+                session['user_profile']['name'] = name
+                session.modified = True  # Ensure the session updates
+                print(f"Stored name in session: {session['user_profile']['name']}")
+                return jsonify({
+                    'reply': f"Nice to meet you, {session['user_profile']['name']}! Can you share a little about your life situation (e.g., married, kids, busy professional)?"
+                })
+            else:
+                return jsonify({
+                    'reply': "Hi there! What's your name? Please respond with 'My name is [your name]'."
+                })
+
+        # Next, ask for the user's life situation
+        if not session['user_profile'].get('life_situation'):
+            if user_message:
+                session['user_profile']['life_situation'] = user_message
+                session.modified = True
+                print(f"Stored life situation in session: {session['user_profile']['life_situation']}")
+                return jsonify({
+                    'reply': f"Thanks for sharing, {session['user_profile']['name']}! How can I assist you today?"
+                })
+            else:
+                return jsonify({
+                    'reply': f"Thanks, {session['user_profile']['name']}! Can you share a little about your life situation (e.g., married, kids, busy professional)?"
+                })
+
+        # If profiling is complete, proceed with OpenAI API
+        print(f"User profile: {session['user_profile']}")
+
         # Request OpenAI's response using the ChatCompletion API
         response = openai.ChatCompletion.create(
             model="gpt-3.5-turbo",  # Change this to "gpt-4" if you want to use GPT-4
