@@ -42,6 +42,8 @@ def static_file(path):
 @app.route('/chat', methods=['POST'])
 def chat():
     try:
+        if 'user_profile' not in session:
+            session['user_profile'] = {}
         # Get the user's message from the request body
         user_message = request.json.get('message')
 
