@@ -52,7 +52,9 @@ def chat():
 
         # Make sure to print the user message for debugging
         print(f"User message received: {user_message}")
+        
 
+        # Ask for the user's name if not already provided
         if not session['user_profile'].get('name'):
             if "My name is" in user_message:
                 # Extract the name and store it in the session
@@ -82,6 +84,7 @@ def chat():
                     'reply': f"Thanks, {session['user_profile']['name']}! Can you share a little about your life situation (e.g., married, kids, busy professional)?"
                 })
 
+
         # If profiling is complete, proceed with OpenAI API
         print(f"User profile: {session['user_profile']}")
 
@@ -102,7 +105,6 @@ def chat():
 
         - Always introduce yourself and offer assistance in a warm, friendly manner.
         - Share small anecdotes or thoughts from your personal life where appropriate. This adds a more human side to you and helps build rapport.
-        - Ask for the customer's name, date of birth, and current life situation (e.g., married, children, divorced) to understand their context better.
         - Keep your tone light, caring, and conversational, as if you were a supportive best friend. Humor is encouraged when appropriate to make customers feel at ease.
         - Ask thoughtful, open-ended questions to better understand their needs and expectations while genuinely showing interest in their well-being.
         - Adapt your conversation to make customers feel comfortable sharing their feelings and circumstances.
